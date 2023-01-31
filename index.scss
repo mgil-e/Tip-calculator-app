@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap");
+
+$breakpoint: 920px;
+
+// Colors
+$very-dark-cyan: hsl(183, 100%, 15%);
+$dark-grayish-cyan: hsl(186, 14%, 43%);
+$grayish-cyan: hsl(184, 14%, 56%);
+$light-grayish-cyan: hsl(185, 41%, 84%);
+$white: hsl(0, 0%, 100%);
+$error: rgb(182, 131, 114);
+$total: rgb(35, 188, 162);
+
+// Font sizes
+$fs-inputs: 24px; // 1.5rem [1rem = 16px]
+
+// Attribution
+.attribution {
+    font-size: inherit;
+    text-align: center;
+    color: $very-dark-cyan;
+
+    a {
+        color: $total;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+// Hide arrows
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+}
+
+.custom-input {
+    border: none;
+    border-radius: 5px;
+    background-color: $light-grayish-cyan;
+    text-align: right;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    padding-right: 1rem;
+
+    &:focus {
+        outline: 2px solid $dark-grayish-cyan;
+    }
+}
+
+body {
+    font-family: "Space Mono", monospace;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    background-color: $light-grayish-cyan;
+    width: 100%;
+    min-height: 100vh;
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+
+        h1 {
+            text-transform: uppercase;
+            letter-spacing: 0.5rem;
+            color: $dark-grayish-cyan;
+            font-size: 1.5rem;
+        }
+    }
+
+    .calc {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: $white;
+        border: none;
+        border-radius: 1.25rem;
+        padding: 2rem;
+        font-size: $fs-inputs;
+        gap: 3rem;
+
+        @media screen and (max-width: $breakpoint) {
+            flex-direction: column;
+            padding: 1rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            label {
+                color: $dark-grayish-cyan;
+                font-size: 1rem;
+                display: inline-flex;
+                margin-bottom: 0.75rem;
+            }
+
+            .bill-container,
+            .num-people {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                width: 100%;
+
+                .icon-dollar,
+                .icon-person {
+                    position: absolute;
+                    left: 20px;
+                    top: 35px;
+                }
+            }
+
+            .bill-container {
+                margin-bottom: 3rem;
+            }
+
+            .tipBtn-container {
+                display: grid;
+                grid-template-columns: repeat(3, 7.25rem);
+                grid-template-rows: repeat(2, 1fr);
+                column-gap: 1rem;
+                row-gap: 1rem;
+                margin-bottom: 3rem;
+
+                @media screen and (max-width: $breakpoint) {
+                    grid-template-columns: repeat(2, 200px);
+                    grid-template-rows: repeat(3, 1fr);
+
+                    input {
+                        text-align: center;
+                    }
+                }
+
+                .tipBtn {
+                    background-color: $very-dark-cyan;
+                    border: none;
+                    border-radius: 0.5rem;
+                    color: $light-grayish-cyan;
+
+                    &:hover {
+                        background-color: $grayish-cyan;
+                    }
+                }
+                .selected {
+                    background-color: $total;
+                    outline: 2px solid $dark-grayish-cyan;
+                }
+            }
+
+            .num-people {
+                .text {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .error {
+                        display: none;
+                    }
+
+                    .msg {
+                        color: $error;
+                        font-size: 1rem;
+                        margin-bottom: 12px;
+                    }
+                }
+
+                .error-outline {
+                    outline: 2px solid $error;
+                }
+            }
+        }
+
+        .output {
+            width: 418px;
+            height: 418px;
+            background-color: $very-dark-cyan;
+            border: none;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2.5rem;
+
+            @media screen and (max-width: $breakpoint) {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .results {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                gap: 2rem;
+            }
+
+            .amount-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                
+
+                .text-container {
+                    color: $light-grayish-cyan;
+                    font-size: 0.75rem;
+
+                    span {
+                        color: $grayish-cyan;
+                    }
+                }
+
+                .total {
+                    font-size: 2rem;
+                    color: $total;
+                }
+            }
+
+            button {
+                text-transform: uppercase;
+                background-color: $total;
+                color: $very-dark-cyan;
+                border: none;
+                border-radius: 0.5rem;
+                padding: 1.25px;
+                cursor: pointer;
+
+                @media screen and (max-width: $breakpoint) {
+                    margin-top: 1rem;
+                }
+            }
+
+            .disabled {
+                opacity: 25%;
+                cursor: default;
+            }
+        }
+    }
+}
